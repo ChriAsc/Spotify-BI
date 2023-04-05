@@ -1,4 +1,4 @@
-# Analysis of music featured on Spotify using Qlik, Tableau and Power BI business intelligence tools
+# Spotify-BI
 
 ## 1. Introduction
 ### 1.1 Spotify 1.2M+ Songs Dataset
