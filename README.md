@@ -192,3 +192,221 @@ In addition, it is possible to filter the keys by artist, and by related album,
 so that you know how many tracks were recorded in a particular key.
 
 Considering the 'minor' mode, most songs have the key 'A'.
+
+
+## 3. Tableau
+### 3.1 Geographical analysis by key and mode
+
+The main purpose of this analysis was to identify the key-mode pairs
+most popular for each region in our dataset. To do this, the
+aggregation operator we used is fashion; unfortunately, Tableau does not provide
+implementation of this operator, so we had to resort to the use of calculated fields.
+resort to the use of calculated fields that emulate its operation.
+
+The form of the calculated field 'ModaKEYMODE' is as follows:
+
+The objective was to generate a support column that would return Boolean values of the
+type:
+
+- _True_ : The key-mode pair in question represents the fashion for the city we are
+    being displayed.
+- _False_ : The key-mode pair does not represent the fashion for the city.
+
+Having obtained this column for each city, we simply filter out the false values to obtain the
+fashions for each of them.
+
+Once we had obtained these values for each city, we simply inserted the Country-
+Region-City hierarchy between the dimensions to obtain the views below, where by going
+roll-up and drill-down we can observe the various fashions by country [Figure 11],
+State/Region [Figure 12], and City [Figure 13].
+
+One problem encountered with this approach is that in Tableau the fields
+calculated fields fail to recognise member aliases, and as a result, at the lowest level of
+lowest level of aggregation (City), aliases (Do,Do#, ect.) assigned to pairs of key-
+modes were not recognised. Conversely, by adding aggregation levels
+(Region, Country), the aliases were read correctly. This forced us to take a
+step back to the transformation phase, where we changed the
+integers of key and mode into string fields.
+
+### 3.2 Energy correlation stories
+
+The second analysis we decided to carry out on Tableau is an analysis aimed at
+observe the correlations linking the "energy" measure with other significant measures in our
+our dataset. In particular, three measures were chosen on which it is easy to
+imagine what kind of relationship may exist with the "energy" value of a track;
+these three measures are 'loudness', 'instrumentalness' and 'acousticness'.
+
+To this end, we decided to exploit Tableau stories, which allow us to expose
+results in the form of a sequence of visualisations; these sheets that
+make up the story are in fact images accompanied by an explanatory text.
+
+There are four sheets that we have decided to include in the stories.
+
+The first provides a representation of the trend of the three correlations based on
+of the time dimension at year level [Figure 14]. As can be observed, the three
+correlations are all of different types. In particular, Energy-Loudness is very close
+to one since an energetic song is almost always also a loud song, Energy-
+Instrumentalness does not show an imbalance as there is no link between
+the energy of a song and its being instrumental, and finally we have Energy-Acousticess
+which shows values very close to -1, due to the fact that most of the
+acoustic tracks are much more relaxed.
+
+After this temporal correlation analysis, we thought of proceeding with
+an analysis on a geographic basis, and thus we placed the measurements of the three
+correlations in a graph together with the spatial hierarchy "country"-"region"-"city". In
+this way, it was also possible to reiterate our expectations of the three measures on a
+geographical basis; here, positive and negative correlations are represented
+respectively by colours close to blue [Figure 15] and red [Figure 16], while the
+lack of a relationship can be observed through the presence of different colours [Figure 17].
+
+### 3.3 Trend analysis
+
+Another type of analysis that Tableau allows is that relating to the
+trends of certain values. In our case, having many descriptive measures
+descriptive measures, what we have done is to observe the predicted trends of these
+2020 (the last year represented in our dataset), looking at a time window of 25 years.
+considering a time window of 25 years. This choice was guided by the absence
+of some years in the dataset and the fact that using too large a time window would have led to less reliable results.
+would have led to less reliable results.
+
+In the graphs below, we can see three forecasts made on an annual basis, representing the trend of the average values of three measurements [Figure 18]. These were chosen to show three different trends: stable, increasing and decreasing. The measures in question are 'energy' (increasing), 'liveness' (mostly stable) and 'acousticness' (decreasing).
+
+Forecasts, as such, indicate the possibility that a measure will take on a certain value in the future and are calculated on the basis of historical trends. In the
+graphs shown here, the blurred area below indicates the range of values within which the the average of the measurement is expected to fall and, for this reason, measurements that have remained more stable over time have remained more stable over time show less variability (the prediction of "acousticness' prediction than that of 'energy' is safer as the latter has presented several peaks over time).
+presented several peaks).
+
+## 4. Power BI
+### 4.1 Analysis of track duration
+
+The first analysis tackled on Power BI concerned the average duration (in minutes) of the
+tracks grouped according to their position in the album. The rationale behind this
+The rationale behind this analysis was that, in most cases, the tracks with the longest duration
+longer, often the most structured, are placed by the artists among the first ones on the album.
+
+Therefore, a bar chart representing the average duration of the tracks according to their position in the album was reported.
+of tracks according to their position in the album [Figure 19]. At first glance, it is easy
+observe that the first 6 songs of the albums have an average duration of more than
+5 minutes; after which, going down in position, the durations tend to decrease initially
+and then stabilise at a value close to 2 minutes and 30 seconds.
+
+In support of this, through the use of a boxplot, it is possible to observe the distribution
+of the durations of the tracks according to their position in the album; in particular, it can be noted
+how after the sixth track there is a gap which separates it from the seventh and that the
+tracks following the first tend to cluster around the average (about 3 minutes and 15
+seconds).
+
+Since the average of the durations is taken into account, in order to have a more representative view of the
+data, four gauges were included, showing the minimum value, the maximum value, the median and the
+maximum, median and standard deviation of the durations [Figure 20]. In addition, it is
+In addition, it is possible to manually explore (by clicking on the bar graph) the characteristics referring
+individual track position in the album, thus having a clearer and more granular perspective.
+clearer and more granular perspective.
+
+To conclude the study concerning the duration of tracks, these were
+analysed on an annual basis using a scatter plot [Figure 21]. The
+The resulting distribution shows a very clear trend: as the years pass, there is a constant
+years, there is a constant homogenisation of the duration of the tracks, which tends to
+assume a value of around 4 minutes and 30 seconds.
+For example, selecting the average duration of the songs at the first position
+within the album, it can be seen that the corresponding median value (around 5 minutes)
+is lower than the mean (7 minutes) and that the standard deviation is rather high
+[Figure 22]. With regard to the temporal analysis, from 1950 until 1 99 0 the duration is
+fairly heterogeneous, whereas in the 2000s it settles at around 6 minutes. This
+This is reflected in the fact that, in general, the first song of the album (usually the intro) is one of the most elaborate, long and
+of the most elaborate, long and finished songs.
+
+### 4.2 Analysis of characteristics according to musical tonality
+
+The last analysis carried out on music tracks focuses on the emotions concerning
+a song or an album. Until the beginning of the 20th century, it was common to associate musical keys
+musical keys with specific emotional or qualitative characteristics, both on the part of the authors and
+by the audience. Therefore, since the dataset in question is composed for a
+conspicuous part by classical music, the presence of such associations was checked, making
+use of 5 available features: valence (how positively a song is perceived)
+the energy, the presence of acoustic instruments, the tempo (indicating the trend) and the
+loudness. To detect a match, a legend was also added showing the
+musical tonalities and their emotional associations [Figure 23].
+
+First, through a graph it was possible to see the average trend of both the
+valence and tempo according to artist, album or track [Figure 24]. Indeed,
+the analysis is more effective when considering albums rather than individual artists, since
+in most cases an artist may write tracks with different valences. From the
+graph, a positive correlation between valence and time is apparent at first glance, however
+only these two measures are not able to provide broader information;
+for example, a sad song might be associated with a slow tempo and -
+vice versa - a happy song might be characterised by a faster tempo,
+but in more complex cases (such as the concept of imaginative or restless), the valence and the
+tempo are not sufficient.
+
+Therefore, four meters and a table were included: the former indicate the average energy
+average, the presence of acoustic instruments on average, average time and average noise,
+while the table presents on the rows the various musical keys and on the columns its
+possible modes (major and minor) and the average valence measure [Figure 25].
+
+Thanks to the other measures, it is also possible to interpret other types of songs, e.g.
+e.g. when the valence may not be accurate, mainly due to the fact that the
+average valence of the keys does not exceed 0.30.
+
+
+For example, selecting Mozart's 'Agnus Dei - Classical Music for
+Reflection and Meditation', it turns out that the famous 'Lacrimosa', written in D minor
+(tonality associated with the serious and the devout), is indeed a mournful and sad track
+[Figure 26], since - apart from the valence near 0 - the energy is very low, the use of
+acoustic instruments is very high, the tempo is far below average and the noisiness
+is not excessive.
+
+If one selects 'Piano Sonata No. 3 in C Major, Op. 2 No. 3: III. Scherzo. Allegro' by
+Beethoven which is written in C major (happy), one can see that the valence is well
+above average and that - in line with a feeling of happiness - the tempo is high but with
+a discrete loudness [Figure 27].
+
+Instead, considering a different genre, one can find that AC/DC's 'T.N.T.',
+written in A major, actually expresses satisfaction and optimism [Figure 28];
+although the valence does not seem so high (0.44), at the same time it can be noted that
+energy, time and - above all - noise are high. From this example, we
+realises that the valence measurement alone, especially when the track is not of classical music
+classical music, should not be considered in an absolute sense, but in conjunction with the
+other measures.
+
+Thus, from this analysis it was possible to trace a largely
+qualitative (such as the emotions that are perceived by the listener and composed) from
+from quantitative measures. Of course, the result is by no means optimal, but
+this is due to the fact that music changes and evolves over time.
+
+## 5. Conclusions
+
+From the study performed, the analyses are essentially descriptive and - as a
+consequently - refer to information inherent in the dataset, whereby they merely
+bring to light correlations and relationships present in the data.
+
+### 5.1 Artists
+
+Initial analyses immediately revealed that most of the artists in the dataset
+come from the United States and the United Kingdom; this is representative of the importance
+of the music industry in these countries, which together have approximately 51 % of the artists
+of the artists in the dataset (212 out of 417). Note also the total absence of artists from
+from Africa and South Central Asia.
+
+### 5.2 Tracks
+
+The majority of the analyses carried out focus on the nature of the songs present in the
+dataset. By studying the main characteristics associated with them, we were able to
+confirm certain hypotheses concerning the music that surrounds us.
+
+In particular, it was possible to observe that:
+
+- A loud song is almost always a song that conveys a lot of energy;
+- Acoustic songs in most cases are associated with a more
+    sad or relaxed mood.
+
+The analysis regarding musical notes and modes (major/minor) made it possible to
+observe which tonalities are most commonly used in different countries. As might be expected, in many
+Western countries, the key of C major is the most widely used; however, it is
+possible to notice a certain variance in the different countries.
+
+It is also important to mention the fact that in our case this type of analysis has
+more valid at the country level (Country), as the limited size of the dataset means that
+that going down to the lower levels of the hierarchy, the data available for each
+the lower levels of the hierarchy, the data available for each region/city are so few that the results lose their meaning and are no longer indicative of the real situation.
+are no longer indicative of the actual situation.
+
