@@ -446,4 +446,4 @@ that going down to the lower levels of the hierarchy, the data available for eac
 the lower levels of the hierarchy, the data available for each region/city are so few that the results lose their meaning and are no longer indicative of the real situation.
 are no longer indicative of the actual situation.
 
-#### Disclaimer: images in the text refer to 'Relazione_Qlik_Tableau_PowerBI.pdf' file
+#### _Disclaimer: images in the text refer to 'Relazione_Qlik_Tableau_PowerBI.pdf' file_
