@@ -410,3 +410,40 @@ that going down to the lower levels of the hierarchy, the data available for eac
 the lower levels of the hierarchy, the data available for each region/city are so few that the results lose their meaning and are no longer indicative of the real situation.
 are no longer indicative of the actual situation.
 
+
+From the study performed, the analyses are essentially descriptive and - as a
+consequently - refer to information inherent in the dataset, whereby they merely
+bring to light correlations and relationships present in the data.
+
+### 5.1 Artists
+
+Initial analyses immediately revealed that most of the artists in the dataset
+come from the United States and the United Kingdom; this is representative of the importance
+of the music industry in these countries, which together have approximately 51 % of the artists
+of the artists in the dataset (212 out of 417). Note also the total absence of artists from
+from Africa and South Central Asia.
+
+### 5.2 Tracks
+
+The majority of the analyses carried out focus on the nature of the songs present in the
+dataset. By studying the main characteristics associated with them, we were able to
+confirm certain hypotheses concerning the music that surrounds us.
+
+In particular, it was possible to observe that:
+
+- A loud song is almost always a song that conveys a lot of energy;
+- Acoustic songs in most cases are associated with a more
+    sad or relaxed mood.
+
+The analysis regarding musical notes and modes (major/minor) made it possible to
+observe which tonalities are most commonly used in different countries. As might be expected, in many
+Western countries, the key of C major is the most widely used; however, it is
+possible to notice a certain variance in the different countries.
+
+It is also important to mention the fact that in our case this type of analysis has
+more valid at the country level (Country), as the limited size of the dataset means that
+that going down to the lower levels of the hierarchy, the data available for each
+the lower levels of the hierarchy, the data available for each region/city are so few that the results lose their meaning and are no longer indicative of the real situation.
+are no longer indicative of the actual situation.
+
+#### Disclaimer: images in the text refer to 'Relazione_Qlik_Tableau_PowerBI.pdf' file
